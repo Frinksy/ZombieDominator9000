@@ -21,11 +21,22 @@ int main(int argc, char** argv)
     int i = 0;
     for(;;)
     {
+<<<<<<< HEAD
         Mat frame;
 	    cap >> frame;
         
         Mat greenFrame;
         greenSelector(&frame, &greenFrame);
+=======
+        i++;
+        Mat frame;
+        cap >> frame;
+        Mat greenFrame;
+        greenSelector(&frame, &greenFrame);
+
+        if( frame.empty() ) break; // end of video stream
+        if( waitKey(10) == 27 ) break; // stop capturing by pressing ESC 
+>>>>>>> 9782b81c0ed9cf933110125356a1fec8108c213e
         greenBoxer(&greenFrame, &frame);
         
 
@@ -37,9 +48,5 @@ int main(int argc, char** argv)
         if( frame.empty() ) break; // end of video stream
         if( waitKey(10) == 27 ) break; // stop capturing by pressing ESC 
     }
-    
-    
-    
-    
     return 0;
 }
