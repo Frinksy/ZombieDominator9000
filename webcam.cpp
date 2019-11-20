@@ -2,6 +2,8 @@
 #include <opencv2/videoio.hpp>
 #include <vector>
 #include "greenDetection.hpp"
+#include "peopleDetector.hpp"
+#include <opencv2/core/ocl.hpp>
 using namespace cv;
 
 
@@ -9,7 +11,7 @@ using namespace cv;
 int main(int argc, char** argv)
 {
     VideoCapture cap;
-
+    
     cap.set(CAP_PROP_FRAME_WIDTH, 240);
     cap.set(CAP_PROP_FRAME_HEIGHT, 320);
 
@@ -19,16 +21,21 @@ int main(int argc, char** argv)
     int i = 0;
     for(;;)
     {
-        i++;
-          Mat frame;
-	  cap >> frame;
+        Mat frame;
+	    cap >> frame;
+        
         Mat greenFrame;
-          greenSelector(&frame, &greenFrame);
-
-          if( frame.empty() ) break; // end of video stream
-          if( waitKey(10) == 27 ) break; // stop capturing by pressing ESC 
+        greenSelector(&frame, &greenFrame);
         greenBoxer(&greenFrame, &frame);
-        imshow("this is you, smile! :)", frame);
+        
+
+        imshow("GREEN", greenFrame);
+
+        imshow("Turret VISION", frame);
+        
+        
+        if( frame.empty() ) break; // end of video stream
+        if( waitKey(10) == 27 ) break; // stop capturing by pressing ESC 
     }
     
     
