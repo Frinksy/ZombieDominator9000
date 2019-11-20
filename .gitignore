@@ -4,3 +4,6 @@ Makefile
 webcam
 CMakeFiles/
 .vscode/
+people*
+sou*
+data/
