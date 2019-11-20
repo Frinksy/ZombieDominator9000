@@ -28,12 +28,7 @@ void greenSelector (Mat *inputFrame, Mat *outputFrame)
 
 Rect rectBoxer (std::vector<Rect> rects)
 {
-    /*
-    int minX = rects[0].x;
-    int minY = rects[0].y;
-    int maxX = rects[0].width + minX;
-    int maxY = rects[0].height + minY;
-    */
+
     int minX  = 276447231 , minY = 276447231, maxX = 0, maxY = 0;
 
 
