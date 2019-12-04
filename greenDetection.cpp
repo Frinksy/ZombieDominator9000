@@ -21,8 +21,11 @@ void greenSelector (Mat *inputFrame, Mat *outputFrame)
     // Threshold for green
     inRange(convertedFrame, lows, highs, *outputFrame);
     
+    // Eroding test
+    erode(*outputFrame, *outputFrame, getStructuringElement(MORPH_ELLIPSE, Size(10,10)));
+
     // Finishing touches
-    medianBlur(*outputFrame, *outputFrame, 7);
+    //medianBlur(*outputFrame, *outputFrame, 7);
 
 }
 
