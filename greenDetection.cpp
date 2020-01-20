@@ -22,7 +22,7 @@ void greenSelector (Mat *inputFrame, Mat *outputFrame)
     inRange(convertedFrame, lows, highs, *outputFrame);
     
     // Eroding test
-    erode(*outputFrame, *outputFrame, getStructuringElement(MORPH_ELLIPSE, Size(10,10)));
+    erode(*outputFrame, *outputFrame, getStructuringElement(MORPH_ELLIPSE, Size(11,11)));
 
     // Finishing touches
     //medianBlur(*outputFrame, *outputFrame, 7);
@@ -53,7 +53,7 @@ Rect rectBoxer (std::vector<Rect> rects)
             }
         }
     }
-    std::cout << Rect(minX, minY, maxX-minX, maxY-minY) << std::endl;
+    //std::cout << Rect(minX, minY, maxX-minX, maxY-minY) << std::endl;
     return Rect(minX, minY, maxX-minX, maxY-minY);
 }
 
