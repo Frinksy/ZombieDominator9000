@@ -12,7 +12,7 @@ int main(int argc, char** argv)
     
     cap.set(CAP_PROP_FRAME_WIDTH, 240);
     cap.set(CAP_PROP_FRAME_HEIGHT, 320);
-    if (argc == 0) {
+    if (argc == 1) {
         if(!cap.open(0))
             return 0;
     }else {
