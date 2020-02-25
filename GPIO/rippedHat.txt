@@ -1,0 +1,20 @@
+working code:
+[python]
+mot = explorerhat.motor.one
+mot.speed([-100 - 100])
+
+
+motor One:
+GPIO ins: 19, 20
+Board pins: 35, 38
+var names: M1B, M1F
+
+motor Two:
+pins: 21, 26
+Board pins: 40, 37
+var names: M2B, M2F
+
+
+controlled using pwm_bw.ChangeDutyCycle([pass speed])
+pwm_bw is a GPIO.PWM object
+GPIO.PWN is passed pin number and 100 [100 is the frequency]
