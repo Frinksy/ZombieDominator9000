@@ -1,3 +1,24 @@
+# Ignore everything
+*
+
+#Whitelist all directories
+!*/
+
+# Files to be added
+'gitattributes
+.gitignore
+!*.cpp
+!*.hpp
+!*.txt
+!*.py
+
+#Ignore these:
+test.cpp
+CMakeFiles
+CMakeCache.txt
+CMakeScripts
+
+#old ignore system
 cmake_install.cmake
 CMakeCache.txt
 Makefile
