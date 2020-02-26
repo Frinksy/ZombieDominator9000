@@ -1,25 +1,29 @@
+#include "motor.hpp"
 #include <wiringPi.h>
 #include <softPwm.h>
 #include <iostream>
 // to compile: c++ <name> -o <output> -lwiringPi -lpthread
 
+Motor::Motor(int p1, int p2)
+{
+    wiringPiSetup();
+    softPwmCreate(p1, 0, 100);
+    softPwmCreate(p2, 0, 100);
+    pin1 = p1;
+    pin2 = p2;
+    speed = 0;
+}
 
-void Stop(int pin1 = 35, int pin2 = 38)
+void Motor::Stop()
 {
     softPwmStop(pin1);
     softPwmStop(pin2);
 }
 
-
-void Speed(int speed = 100, int pin1 = 24, int pin2 = 28)
+void Motor::setSpeed(int new_speed = 100)
 {
     if (speed > 100 || speed < -100) return;
     
-    //pinMode(pin1, PWM_OUTPUT);
-    //pinMode(pin2, PWM_OUTPUT);
-    softPwmCreate(pin1, speed, 100);
-    softPwmCreate(pin2, speed, 100);
-
     if (speed > 0)
     {
         softPwmWrite(pin1, speed);
@@ -32,25 +36,12 @@ void Speed(int speed = 100, int pin1 = 24, int pin2 = 28)
     }
     else if (speed == 0)
     {
-        Stop(pin1, pin2);
+        Motor::Stop();
     }
+    speed = new_speed;
 }
 
-int main()
+int Motor::getSpeed()
 {
-    wiringPiSetup();
-    //motor One phys: 35, 38    wiringPi: 24, 28
-    //motor Two: 40, 37         wiringPi: 29, 25
-    std::cout << "Starting motor\n";
-    for (int i  = 10; i < 101; i += 5)
-    {
-        std::cout << "Speed: " << i << std::endl;
-        Speed(i, 24, 28);
-        delay(1000);
-    }
-    //pauses program for n miliseconds
-    delay(1000);
-    std::cout << "Finishing\n";
-    Stop(24, 28);
-    return 0;
+    return speed;
 }
