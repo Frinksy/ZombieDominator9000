@@ -42,8 +42,13 @@ int main()
     //motor One phys: 35, 38    wiringPi: 24, 28
     //motor Two: 40, 37         wiringPi: 29, 25
     std::cout << "Starting motor\n";
-    Speed(100, 24, 28); 
-    
+    for (int i  = 10; i < 101; i += 5)
+    {
+        std::cout << "Speed: " << i << std::endl;
+        Speed(i, 24, 28);
+        delay(1000);
+    }
+    //pauses program for n miliseconds
     delay(1000);
     std::cout << "Finishing\n";
     Stop(24, 28);
